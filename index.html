@@ -1,20 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Quiz</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
 
-  <body>
-    <div class="container">
-      <h1 class="welcome">Welcome</h1>
-      <h2 id="countdown"></h2>
-      <p id="main"></p>
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Quiz</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
 
-    <script src="script.js"></script>
-  </body>
+<body>
+  <div id="timer">
+    0
+  </div>
+
+  <div id="startscreen">
+    <h1>Coding Quiz Challenge</h1>
+    <button id="start">Start Quiz</button>
+  </div>
+  <div id="questions" class="hide">
+    <h2 id="qtitle"></h2>
+    <div id="choices"></div>
+  </div>
+
+
+  <script src="script.js"></script>
+</body>
+
 </html>

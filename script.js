@@ -1,53 +1,95 @@
-var timerEl = document.getElementById('countdown');
-var mainEl = document.getElementById('main');
+var questionsel = document.getElementById("questions");
+var timeel = document.getElementById("timer");
+var startbutton = document.getElementById("start");
+var choices = document.getElementById("choices");
+var time = 45;
+var timerid;
+var currentquestionindex = 0;
 
-var message =
-  'Some say the world will end in 🔥, Some say in ice. From what I’ve tasted of desire, I hold with those who favor fire. But if it had to perish twice, I think I know enough of hate. To say that for destruction ice, Is also great, And would suffice.';
-var words = message.split(' ');
 
-// Timer that counts down from 5
-function countdown() {
-  var timeLeft = 5;
+var questions = [
+  {
+    question: "why did the chicken cross road",
+    choices: ["just because", "he was lost", "because free will"],
+    answer: "just because",
+  },
 
-  // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
-  var timeInterval = setInterval(function () {
-    // As long as the `timeLeft` is greater than 1
-    if (timeLeft > 1) {
-      // Set the `textContent` of `timerEl` to show the remaining seconds
-      timerEl.textContent = timeLeft + ' seconds remaining';
-      // Decrement `timeLeft` by 1
-      timeLeft--;
-    } else if (timeLeft === 1) {
-      // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
-      timerEl.textContent = timeLeft + ' second remaining';
-      timeLeft--;
-    } else {
-      // Once `timeLeft` gets to 0, set `timerEl` to an empty string
-      timerEl.textContent = '';
-      // Use `clearInterval()` to stop the timer
-      clearInterval(timeInterval);
-      // Call the `displayMessage()` function
-      displayMessage();
-    }
-  }, 1000);
+  {
+    question: "how are you",
+    choices: ["good", "bad", "meh"],
+    answer: "good",
+  },
+
+
+]
+
+function gameover() {
+  clearInterval(timerid);
+
 }
 
-// Displays the message one word at a time
-function displayMessage() {
-  var wordCount = 0;
-
-  // Uses the `setInterval()` method to call a function to be executed every 1000 milliseconds
-  var msgInterval = setInterval(function () {
-    // If there are no more words left in the message
-    if (words[wordCount] === undefined) {
-      // Use `clearInterval()` to stop the timer
-      clearInterval(msgInterval);
-    } else {
-      // Display one word of the message
-      mainEl.textContent = words[wordCount];
-      wordCount++;
-    }
-  }, 1000);
+function timer() {
+  time--;
+  timeel.textContent = time;
+  if (time <= 0) {
+    gameover();
+  }
 }
 
-countdown();
+function checkanswer() {
+  console.log(this.value)
+  if (this.value !== questions[currentquestionindex].answer) {
+    time -= 10
+    if (time < 0) {
+      time = 0
+    }
+    timeel.textContent=time;
+  }
+  else{
+    currentquestionindex++
+    showquestions();
+  }
+  //currentquestionindex++ 
+  //showquestions();
+}
+
+function showquestions() {
+  var currentquestion = questions[currentquestionindex]
+  var title = document.getElementById("qtitle");
+  choices.innerHTML="";
+  console.log(currentquestion.question)
+  title.textContent = currentquestion.question;
+  currentquestion.choices.forEach(function (choice) {
+    var choicebutton = document.createElement("button");
+    choicebutton.setAttribute("value", choice)
+    choicebutton.textContent = choice;
+    choicebutton.onclick = checkanswer;
+    choices.appendChild(choicebutton);
+  })
+
+}
+
+function start() {
+  var startscreen = document.getElementById("startscreen");
+  startscreen.setAttribute("class", "hide")
+  questionsel.removeAttribute("class")
+
+  timerid = setInterval(timer, 1000)
+  timeel.textContent = time;
+  showquestions();
+}
+startbutton.onclick = start;
+
+
+
+// GIVEN I am taking a code quiz
+// WHEN I click the start button
+// THEN a timer starts and I am presented with a question
+// WHEN I answer a question
+// THEN I am presented with another question
+// WHEN I answer a question incorrectly
+// THEN time is subtracted from the clock
+// WHEN all questions are answered or the timer reaches 0
+// THEN the game is over
+// WHEN the game is over
+// THEN I can save my initials and my score
