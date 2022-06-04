@@ -23,5 +23,5 @@ if (allScores !== null) {
 }
 // Event listener to go back to index
 goBack.addEventListener("click", function () {
-    window.location.replace("https://google.com");
+    window.location.replace("https://surfinsofia.github.io/codingQuiz/");
 });
