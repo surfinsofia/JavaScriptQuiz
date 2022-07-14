@@ -1,4 +1,8 @@
-
+* {
+  background-image: url(https://i.gifer.com/76YS.gif);
+  color:white;
+  font-size: 22px;
+}
 
 #box {
   position: absolute;
@@ -7,16 +11,21 @@
   width: 500px;
   height: 500px;
   border: 3px solid purple;
+  text-align: center;
+  color: white;
 }
 #startTime {
   background-color: purple;
-  margin-left: 33%;
   padding: 15px 32px;
   font-size: 20px;
   color: white;
+  align-items: center;
+  text-align: center;
 }
 #questionsDiv {
   margin: 20px;
+  text-align: center;
+  align-items: center;
 }
 
 #currentTime {
@@ -77,6 +86,7 @@ input {
 
 h1 {
   text-align: center;
+  font-size: 27px;
  
 }
 
@@ -104,6 +114,7 @@ body {
 #box {
 position: absolute;
 left: 20%;
+color:white;
 }
 
 a {
